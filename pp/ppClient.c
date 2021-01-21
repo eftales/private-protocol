@@ -24,9 +24,10 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     udp udp_pack = {
         .src_port = htons(2333),
         .dst_port = htons(2333),
-        .len = htons(23),
+        .len = htons(58),
         .checksum = 0
     };
+
     char* udp_frame = encapsulate_udp(&udp_pack,data,50);
 
     ip ip_pack = {
@@ -38,14 +39,14 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
         .off = 0,
         .flags = 0,
         .ttl = htons(255),
-        .pro = htons(IPPROTO_UDP)
+        .pro = 17
 
     };
     char* ip_frame = encapsulate_ip(&ip_pack,udp_frame,UDPHEADLEN + 50);
     free(udp_frame);
 
     pp pp_pack = {
-        .lsc_dst = htons(1),
+        .lsc_dst = 1,
         .lsc_src = 0
     };
     char* pp_frame = encapsulate_pp(&pp_pack,ip_frame,IPHEADLEN+UDPHEADLEN + 50);

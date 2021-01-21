@@ -59,7 +59,7 @@ void extract_ip(unsigned char* ip_frame){
 	ip_pack.off = ((*(unsigned short *)(ip_frame+6) & 0x1f) << 8) + *(ip_frame+6 + 1); 
     ip_pack.data = ip_frame + IPHEADLEN;
     switch(ip_pack.pro){
-        case IPPROTO_UDP:
+        case 17:
             extract_udp(ip_pack.data);
             break;
         default:
