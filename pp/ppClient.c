@@ -24,7 +24,7 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     udp udp_pack = {
         .src_port = htons(2333),
         .dst_port = htons(2333),
-        .len = htons(58),
+        .len = htons(UDPHEADLEN+50),
         .checksum = 0
     };
 
