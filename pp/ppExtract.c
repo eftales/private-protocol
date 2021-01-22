@@ -12,7 +12,7 @@ void extract_eth(unsigned char* eth_frame){
     eth_pack.pp_pack = eth_frame + ETHHEADLEN;
 
     switch(eth_pack.eth_type_len){
-        case 0x0808:
+        case ETHERTYPE:
             printf("-------Eth-------\n");
             printf("Destination: %02x:%02x:%02x:%02x:%02x:%02x\n",eth_pack.dst_mac[0], eth_pack.dst_mac[1], eth_pack.dst_mac[2], eth_pack.dst_mac[3], eth_pack.dst_mac[4], eth_pack.dst_mac[5]);
             printf("Source: %02x:%02x:%02x:%02x:%02x:%02x\n",eth_pack.src_mac[0], eth_pack.src_mac[1], eth_pack.src_mac[2], eth_pack.src_mac[3], eth_pack.src_mac[4], eth_pack.src_mac[5]);

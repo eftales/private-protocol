@@ -55,7 +55,7 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     eth eth_pack;
     memcpy(&eth_pack.dst_mac,dst_mac,6);
     memcpy(&eth_pack.src_mac,src_mac,6);
-    eth_pack.eth_type_len = htons(0x0808);
+    eth_pack.eth_type_len = htons(ETHERTYPE);
 
     char* eth_frame = encapsulate_eth(&eth_pack,pp_frame,PPHEADLEN+IPHEADLEN+UDPHEADLEN + 50);
     free(pp_frame);
