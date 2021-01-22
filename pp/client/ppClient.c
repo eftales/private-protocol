@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "ppEncapsulate.h"
+#include <pthread.h>
 
 int main(int argc,char** argv) // 网卡名称 目的主机mac
 {
@@ -14,7 +15,7 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     unsigned char* data = "12345678901234567890123456789012345678901234567890";
 
 
-    interface2mac(interface,src_mac);
+    //interface2mac(interface,src_mac);
     for (int i=0;i<6;++i){
         printf("%02x:",src_mac[i]);
     }

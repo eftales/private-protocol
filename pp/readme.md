@@ -1,4 +1,4 @@
-整个协议栈结构：
+# 协议栈结构
 
 eth<-pp(type=0x0808)<-ip<-udp
 
@@ -13,3 +13,7 @@ make
 sudo ./ppServer "网卡mac"
 sudo ./ppClient "网卡mac" "服务器的MAC" 
 ```
+
+# .vscode
+client/.vscode 文件夹下的配置文件可以在vscode中调试多.c .h文件
+

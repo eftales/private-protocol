@@ -1,7 +1,7 @@
 .PHONY: clean stop
 all:
-	gcc ppServer.c pp.h pp.c ppExtract.c ppExtract.h -o ppServer 
-	gcc ppClient.c pp.h pp.c ppEncapsulate.c ppEncapsulate.h -o ppClient
+	gcc server/ppServer.c server/pp.h server/pp.c server/ppExtract.c server/ppExtract.h -o ppServer 
+	gcc client/ppClient.c client/pp.h client/pp.c client/ppEncapsulate.c client/ppEncapsulate.h -o ppClient
 
 clean: 
 	rm -rf *.o ppServer ppClient
