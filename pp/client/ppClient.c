@@ -6,20 +6,27 @@
 
 int main(int argc,char** argv) // 网卡名称 目的主机mac
 {
-    if (argc<2){
-        printf("命令行参数过少");
-        return -1;
-    }
+
     unsigned char src_mac[6],dst_mac[6];
-    char *interface=argv[1]; // nic name
+    char *interface; // nic name
     unsigned char* data = "12345678901234567890123456789012345678901234567890";
 
+    if (argc<=2){
+        interface = "h2-eth0"; // h2-eth0
+        char fMAC[20];
+        FILE* f = fopen("serverMAC","r");
+        fscanf(f, "%s", fMAC);
+        mac_str2mac(fMAC,dst_mac);
 
-    //interface2mac(interface,src_mac);
+    }else{
+        interface = argv[1];
+        mac_str2mac(argv[2],dst_mac);
+    }
+    interface2mac(interface,src_mac);
     for (int i=0;i<6;++i){
         printf("%02x:",src_mac[i]);
     }
-    mac_str2mac(argv[2],dst_mac);
+    
 
 
     udp udp_pack = {

@@ -4,7 +4,7 @@ all:
 	gcc client/ppClient.c client/pp.h client/pp.c client/ppEncapsulate.c client/ppEncapsulate.h -o ppClient
 
 clean: 
-	rm -rf *.o ppServer ppClient
+	rm -rf *.o ppServer ppClient serverMAC clientMAC
 	
 stop:
 	pkill ppServer

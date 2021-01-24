@@ -5,10 +5,7 @@
 
 int main(int argc,char** argv) // 网卡名称
 { 
-    if (argc<1){
-        printf("命令行参数过少");
-        return -1;
-    }
+
 
     int protocol;
 	int n_read;
@@ -18,11 +15,26 @@ int main(int argc,char** argv) // 网卡名称
 	eth_frame = buffer;
 
     unsigned char src_mac[6];
-    char *interface=argv[1]; // nic name
-    interface2mac(interface,src_mac);
-    for (int i=0;i<6;++i){
-        printf("%02x:",src_mac[i]);
+    if (argc<=1){
+        char *interface="h1-eth0"; // nic name 
+        interface2mac(interface,src_mac);
+
+    }else{
+        char *interface=argv[1]; // nic name
+        interface2mac(interface,src_mac);
     }
+    FILE *f = fopen("serverMAC", "w");
+
+    char fCache[4];
+    for (int i=0;i<5;++i){
+        printf("%02x:",src_mac[i]);
+        sprintf(fCache,"%02x:",src_mac[i]);
+        fputs(fCache,f);
+    }
+    printf("%02x",src_mac[5]);
+    sprintf(fCache,"%02x",src_mac[5]);
+    fputs(fCache,f);
+    fclose(f);
     fflush(stdout); // 不加这个 printf 会在 recvfrom 之后执行，表现为有数据到达之后，才打印
 
 

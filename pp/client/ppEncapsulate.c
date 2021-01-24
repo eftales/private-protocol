@@ -60,6 +60,6 @@ void send_frame(char* interface,char* frame,int len){
         perror ("sendto() failed");
         exit (EXIT_FAILURE);
     }
-    printf ("sended.\n ");     
+    printf ("sended.\n");     
     close (sd);
 }
