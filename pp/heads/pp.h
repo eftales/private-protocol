@@ -23,7 +23,7 @@
 
 // const
 #define MAXETHLEN 1600
-#define ETHERTYPE 0xabcd
+#define ETHERTYPE 0x09ab
 
 
 #define ETHHEADLEN 14
