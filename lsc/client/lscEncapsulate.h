@@ -1,9 +1,9 @@
-#ifndef __PPENCAPSULATE__
-#define __PPENCAPSULATE__
+#ifndef __LSCENCAPSULATE__
+#define __LSCENCAPSULATE__
 
 #pragma pack(1)
 
-#include "pp.h"
+#include "lsc.h"
 
 void interface2mac(char* interface,char* src_mac);
 
@@ -15,14 +15,14 @@ char* encapsulate_udp(udp *udp_pack,unsigned char* data,int len);
 /// --func
 char* encapsulate_ip(ip *ip_pack,unsigned char* udp,int len);
 
-// pp
+// lsc
 /// --func
-char* encapsulate_pp(pp* pp_pack,unsigned char* ip,int len);
+char* encapsulate_lsc(lsc* lsc_pack,unsigned char* ip,int len);
 
 
 // eth
 /// --func
-char* encapsulate_eth(eth* eth_pack,unsigned char* pp,int len);
+char* encapsulate_eth(eth* eth_pack,unsigned char* lsc,int len);
 
 void send_frame(char* interface,char* frame,int len);
 #endif

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ppExtract.h"
+#include "lscExtract.h"
 
 
 int main(int argc,char** argv) // 网卡名称

@@ -1,4 +1,4 @@
-#include "ppExtract.h"
+#include "lscExtract.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +9,7 @@ void extract_eth(unsigned char* eth_frame){
 
     eth_pack.eth_type_len = ntohs(*(unsigned short*)(eth_frame+12));//转换字节序
 
-    eth_pack.pp_pack = eth_frame + ETHHEADLEN;
+    eth_pack.lsc_pack = eth_frame + ETHHEADLEN;
 
     switch(eth_pack.eth_type_len){
         case ETHERTYPE:
@@ -19,10 +19,10 @@ void extract_eth(unsigned char* eth_frame){
             printf("type: %u\n",eth_pack.eth_type_len);
 
             printf("eth_type_len=%d",eth_pack.eth_type_len);
-            extract_pp(eth_pack.pp_pack);
+            extract_lsc(eth_pack.lsc_pack);
             break;
         case 0x0800:
-            //extract_ip(eth_pack.pp_pack);
+            //extract_ip(eth_pack.lsc_pack);
             break;
         default:
             //printf("eth_type_len=%d, unknown\n",eth_pack.eth_type_len);
@@ -32,16 +32,16 @@ void extract_eth(unsigned char* eth_frame){
 }
 
 
-void extract_pp(unsigned char* pp_frame){
-    pp pp_pack;
-    memcpy(&pp_pack,pp_frame,PPHEADLEN);
+void extract_lsc(unsigned char* lsc_frame){
+    lsc lsc_pack;
+    memcpy(&lsc_pack,lsc_frame,LSCHEADLEN);
 
-    pp_pack.ip_pack = pp_frame + PPHEADLEN;
+    lsc_pack.ip_pack = lsc_frame + LSCHEADLEN;
     // TODO
     // 此处缺少lsc_pre检测
-    printf("lsc_dst:%d\nlsc_src:%d\n",pp_pack.lsc_dst,pp_pack.lsc_src);
+    printf("lsc_dst:%d\nlsc_src:%d\n",lsc_pack.lsc_dst,lsc_pack.lsc_src);
 
-    extract_ip(pp_pack.ip_pack);
+    extract_ip(lsc_pack.ip_pack);
 
 }
 

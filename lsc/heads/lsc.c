@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>    
-#include "pp.h"
+#include "lsc.h"
 
 void interface2mac(char* interface,char* src_mac)
 {

@@ -1,5 +1,5 @@
-#ifndef __PP__
-#define __PP__
+#ifndef __LSC__
+#define __LSC__
 
 #pragma pack(1)
 
@@ -27,11 +27,11 @@
 
 
 #define ETHHEADLEN 14
-#define PPHEADLEN 8
+#define LSCHEADLEN 8
 #define IPHEADLEN 20
 #define UDPHEADLEN 8
 #define TCPHEADLEN 40
-#define PPLEN 8
+#define LSCLEN 8
 
 
 // udp
@@ -65,7 +65,7 @@ typedef struct
 }ip;
 
 
-// pp
+// lsc
 /// --struct
 typedef struct
 {
@@ -75,7 +75,7 @@ typedef struct
     unsigned char lsc_src;
     unsigned char lsc_ctrl;
     char* ip_pack; 
-}pp;
+}lsc;
 
 
 
@@ -86,7 +86,7 @@ typedef struct
     unsigned char dst_mac[6];
 	unsigned char src_mac[6];
     unsigned short eth_type_len;
-	char* pp_pack; 
+	char* lsc_pack; 
 }eth;
 
 // tools

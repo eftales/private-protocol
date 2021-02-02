@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>            // errno, perror()
-#include "ppEncapsulate.h"
+#include "lscEncapsulate.h"
 
 char* encapsulate_udp(udp *udp_pack,unsigned char* data,int len){
 
@@ -21,19 +21,19 @@ char* encapsulate_ip(ip *ip_pack,unsigned char* udp,int len){
 }
 
 
-char* encapsulate_pp(pp* pp_pack,unsigned char* ip,int len){
-    char* pp_frame = malloc(sizeof(unsigned char)*(len+PPHEADLEN+1));
-    memcpy(pp_frame,pp_pack,PPHEADLEN);
-    memcpy(pp_frame+PPHEADLEN,ip,len);
-    return pp_frame;
+char* encapsulate_lsc(lsc* lsc_pack,unsigned char* ip,int len){
+    char* lsc_frame = malloc(sizeof(unsigned char)*(len+LSCHEADLEN+1));
+    memcpy(lsc_frame,lsc_pack,LSCHEADLEN);
+    memcpy(lsc_frame+LSCHEADLEN,ip,len);
+    return lsc_frame;
 }
 
 
 
-char* encapsulate_eth(eth* eth_pack,unsigned char* pp,int len){
+char* encapsulate_eth(eth* eth_pack,unsigned char* lsc,int len){
     char* eth_frame = malloc(sizeof(unsigned char)*(len+ETHHEADLEN+1));
     memcpy(eth_frame,eth_pack,ETHHEADLEN);
-    memcpy(eth_frame+ETHHEADLEN,pp,len);
+    memcpy(eth_frame+ETHHEADLEN,lsc,len);
     return eth_frame;
 }
 

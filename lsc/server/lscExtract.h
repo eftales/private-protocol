@@ -1,9 +1,9 @@
-#ifndef __PPEXTRACT__
-#define __PPEXTRACT__
+#ifndef __LSCEXTRACT__
+#define __LSCEXTRACT__
 
 #pragma pack(1)
 
-#include "pp.h"
+#include "lsc.h"
 
 // data process
 void process_data(unsigned char* data,int len);
@@ -17,9 +17,9 @@ void extract_udp(unsigned char* udp_frame);
 /// --func
 void extract_ip(unsigned char* ip_frame);
 
-// pp
+// lsc
 /// --func
-void extract_pp(unsigned char* pp_frame);
+void extract_lsc(unsigned char* lsc_frame);
 
 
 // eth

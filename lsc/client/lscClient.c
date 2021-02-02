@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "ppEncapsulate.h"
+#include "lscEncapsulate.h"
 #include <pthread.h>
 
 int main(int argc,char** argv) // 网卡名称 目的主机mac
@@ -53,11 +53,11 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     char* ip_frame = encapsulate_ip(&ip_pack,udp_frame,UDPHEADLEN + 50);
     free(udp_frame);
 
-    pp pp_pack = {
+    lsc lsc_pack = {
         .lsc_dst = 1,
         .lsc_src = 0
     };
-    char* pp_frame = encapsulate_pp(&pp_pack,ip_frame,IPHEADLEN+UDPHEADLEN + 50);
+    char* lsc_frame = encapsulate_lsc(&lsc_pack,ip_frame,IPHEADLEN+UDPHEADLEN + 50);
     free(ip_frame);
 
     eth eth_pack;
@@ -65,9 +65,9 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     memcpy(&eth_pack.src_mac,src_mac,6);
     eth_pack.eth_type_len = htons(ETHERTYPE);
 
-    char* eth_frame = encapsulate_eth(&eth_pack,pp_frame,PPHEADLEN+IPHEADLEN+UDPHEADLEN + 50);
-    free(pp_frame);
+    char* eth_frame = encapsulate_eth(&eth_pack,lsc_frame,LSCHEADLEN+IPHEADLEN+UDPHEADLEN + 50);
+    free(lsc_frame);
 
-    send_frame(interface,eth_frame,ETHHEADLEN+PPHEADLEN+IPHEADLEN+UDPHEADLEN + 50);
+    send_frame(interface,eth_frame,ETHHEADLEN+LSCHEADLEN+IPHEADLEN+UDPHEADLEN + 50);
     return 0;
 }
