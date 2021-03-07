@@ -54,7 +54,7 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     free(udp_frame);
 
     lsc lsc_pack = {
-        .lsc_dst = 3,
+        .lsc_dst = 1,
         .lsc_src = 0
     };
     char* lsc_frame = encapsulate_lsc(&lsc_pack,ip_frame,IPHEADLEN+UDPHEADLEN + 50);
