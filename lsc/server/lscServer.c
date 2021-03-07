@@ -16,7 +16,7 @@ int main(int argc,char** argv) // 网卡名称
 
     unsigned char src_mac[6];
     if (argc<=1){
-        char *interface="h1-eth0"; // nic name 
+        char *interface="ens34"; // nic name 
         interface2mac(interface,src_mac);
 
     }else{
