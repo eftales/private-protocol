@@ -12,7 +12,7 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     unsigned char* data = "12345678901234567890123456789012345678901234567890";
 
     if (argc<=2){
-        interface = "h2-eth0"; // h2-eth0
+        interface = "ens34"; // h2-eth0
         char fMAC[20];
         FILE* f = fopen("serverMAC","r");
         fscanf(f, "%s", fMAC);
@@ -54,7 +54,7 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
     free(udp_frame);
 
     lsc lsc_pack = {
-        .lsc_dst = 1,
+        .lsc_dst = 3,
         .lsc_src = 0
     };
     char* lsc_frame = encapsulate_lsc(&lsc_pack,ip_frame,IPHEADLEN+UDPHEADLEN + 50);
