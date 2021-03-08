@@ -13,9 +13,9 @@ int main(int argc,char** argv) // 网卡名称 目的主机mac
 
     if (argc<=2){
         interface = "ens34"; // h2-eth0
-        char fMAC[20];
-        FILE* f = fopen("serverMAC","r");
-        fscanf(f, "%s", fMAC);
+        char fMAC[20] = "00:0c:29:dd:a5:02"; // P4物理运行环境参数
+        // FILE* f = fopen("serverMAC","r"); // mininet运行环境参数
+        // fscanf(f, "%s", fMAC); // mininet运行环境参数
         mac_str2mac(fMAC,dst_mac);
 
     }else{
