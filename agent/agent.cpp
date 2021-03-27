@@ -14,7 +14,7 @@ int main(int argc,char** argv)
     packet_in packet_in_pack;
 
     char ip[16];
-    get_local_ip("p4-lo",ip);
+    get_local_ip("p4lo",ip);
 
 
 
