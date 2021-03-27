@@ -1,7 +1,8 @@
-#ifndef __LSC__
-#define __LSC__
+#ifndef __LSCEXTRACT__
+#define __LSCEXTRACT__
 
 #pragma pack(1)
+
 
 // socket head files
 #include <netdb.h>            // struct addrinfo
@@ -24,60 +25,17 @@
 // const
 #define MAXETHLEN 1600
 #define ETHER_LSC 0x09ab
-
+#define ETHTYPE_PACKET_IN 0x09ad
 
 #define ETHHEADLEN 14
-#define LSCHEADLEN 8
-#define IPHEADLEN 20
-#define UDPHEADLEN 8
-#define TCPHEADLEN 40
-#define LSCLEN 8
+#define PACKETINLEN 2
 
-
-// udp
+// packet_in 
 /// --struct
 typedef struct
 {
-	unsigned short src_port;
-	unsigned short dst_port;
-	unsigned short len;
-	unsigned short checksum;
-    unsigned char* data;
-}udp;
-
-
-// ip
-/// --struct
-typedef struct
-{
-	unsigned char hl:4, v:4;
-	//hl为一个字节中的低4个bits，v为一个字节中的高4个bits
-	unsigned char tos;
-	unsigned short len;
-	unsigned short id;
-	unsigned short off:13, flags:3;
-	unsigned char ttl;
-	unsigned char pro;
-	unsigned short checksum;
-	unsigned char src[4];
-	unsigned char dst[4];
-    unsigned char* data;
-}ip;
-
-
-// lsc
-/// --struct
-typedef struct
-{
-    unsigned char lsc_pre[2];
-    unsigned char lsc_colony_id[3];
-    unsigned char lsc_dst;
-    unsigned char lsc_src;
-    unsigned char lsc_ctrl;
-    char* ip_pack; 
-}lsc;
-
-
+    unsigned short ingress_port;
+}packet_in;
 
 // eth
 /// --struct
@@ -86,16 +44,26 @@ typedef struct
     unsigned char dst_mac[6];
 	unsigned char src_mac[6];
     unsigned short eth_type_len;
-	char* lsc_pack; 
 }eth;
 
 // tools
-/// 读取网络接口名称的mac地址
-void interface2mac(char* interface,char* src_mac);
 
 /// mac字符串转换为mac地址
 void mac_str2mac(unsigned char* mac_str, unsigned char* mac);
 
+/// 
+int get_local_ip(const char *eth_inf, char *ip);
+
+
 ///
 int hex2dec(unsigned char hex);
+
+// packet_in
+/// --func
+void extract_packet_in(unsigned char* packet_in_frame,packet_in &packet_in_pack);
+
+
+// eth
+/// --func
+void extract_eth(unsigned char* eth_frame,eth &eth_pack);
 #endif
