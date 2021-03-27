@@ -9,21 +9,9 @@ void extract_eth(unsigned char* eth_frame,eth &eth_pack){
     
     memcpy(&eth_pack,eth_frame,ETHHEADLEN);
 
-    eth_pack.eth_type_len = ntohs(*(unsigned short*)(eth_frame+12));//转换字节序
+    eth_pack.eth_type_len = ntohs(eth_pack.eth_type_len);//转换字节序
 
-    switch(eth_pack.eth_type_len){
-        case ETHTYPE_PACKET_IN:
-            printf("-------Eth-------\n");
-            printf("Destination: %02x:%02x:%02x:%02x:%02x:%02x\n",eth_pack.dst_mac[0], eth_pack.dst_mac[1], eth_pack.dst_mac[2], eth_pack.dst_mac[3], eth_pack.dst_mac[4], eth_pack.dst_mac[5]);
-            printf("Source: %02x:%02x:%02x:%02x:%02x:%02x\n",eth_pack.src_mac[0], eth_pack.src_mac[1], eth_pack.src_mac[2], eth_pack.src_mac[3], eth_pack.src_mac[4], eth_pack.src_mac[5]);
-            printf("type: %u\n",eth_pack.eth_type_len);
 
-            printf("eth_type_len=%d",eth_pack.eth_type_len);
-            break;
-        default:
-            //printf("eth_type_len=%d, unknown\n",eth_pack.eth_type_len);
-            break;
-    }
 
 }
 
