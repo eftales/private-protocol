@@ -33,6 +33,7 @@ int main(int argc,char** argv)
         else{
             extract_eth(eth_frame,eth_pack);
             extract_packet_in(eth_frame+ETHHEADLEN,packet_in_pack);
+            printf("ingress_port:%d \n",packet_in_pack.ingress_port);
         }
         
     }
