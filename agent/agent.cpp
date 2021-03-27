@@ -15,6 +15,7 @@ int main(int argc,char** argv)
 
     char ip[16];
     get_local_ip("p4lo",ip);
+    printf("listening at %s\n",ip);
 
 
 
